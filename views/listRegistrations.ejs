@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/global.css" />
+    <link rel="stylesheet" href="/navbar.css" />
+    <link rel="stylesheet" href="/listRegistrations.css" />
+  </head>
+  <body>
+    <%- include('partials/navbar', { user: user }) %>
+
+    <div class="container">
+      <h2><%= title %> (<%= totalRegistrations %> total)</h2>
+      <%- include('partials/message') %> <% if (registrations.length > 0) { %>
+      <div class="registration-card-list">
+        <% registrations.forEach(reg => { %>
+        <div class="registration-card">
+          <p><strong>Reg ID:</strong> <%= reg._id %></p>
+          <p>
+            <strong>Student:</strong> <%= reg.studentId ? reg.studentId.username
+            : 'N/A' %>
+          </p>
+          <p>
+            <strong>Event:</strong> <%= reg.eventId ? reg.eventId.name : 'N/A'
+            %>
+          </p>
+          <p>
+            <strong>Event Date:</strong> <%= reg.eventId ? new
+            Date(reg.eventId.date).toLocaleDateString() : 'N/A' %>
+          </p>
+          <p>
+            <strong>Registered:</strong> <%= new
+            Date(reg.registrationDate).toLocaleString() %>
+          </p>
+        </div>
+        <% }) %>
+      </div>
+
+      <% if (totalPages > 1) { %>
+      <div class="pagination">
+        <% if (currentPage > 1) { %>
+        <a href="?page=<%= currentPage - 1 %>" class="btn btn-sm">Previous</a>
+        <% } %>
+        <span>Page <%= currentPage %> of <%= totalPages %></span>
+        <% if (currentPage < totalPages) { %>
+        <a href="?page=<%= currentPage + 1 %>" class="btn btn-sm">Next</a>
+        <% } %>
+      </div>
+      <% } %> <% } else { %>
+      <p class="no-registrations-message">No students have registered yet.</p>
+      <% } %>
+    </div>
+  </body>
+</html>

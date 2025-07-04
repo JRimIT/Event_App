@@ -1,0 +1,30 @@
+<!-- views/partials/navbar.ejs -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h2>FPT Events</h2>
+    <% if (user) { %>
+    <div class="sidebar-username">
+      Hello, <strong><%= user.role %></strong> <%= user.username %>
+    </div>
+    <% } %>
+  </div>
+
+  <ul class="sidebar-menu">
+    <% if (user) { %> <% if (user.role === 'student') { %>
+    <li><a href="/events/register">Register for Event</a></li>
+    <li><a href="/registrations/cancel">My Registrations</a></li>
+    <% } else if (user.role === 'admin') { %>
+    <li><a href="/registrations/list">View All Registrations</a></li>
+    <li><a href="/registrations/search">Search Registrations</a></li>
+    <% } %> <% } else { %>
+    <li><a href="/auth/login">Login</a></li>
+    <li><a href="/auth/register">Register</a></li>
+    <% } %>
+  </ul>
+
+  <% if (user) { %>
+  <div class="sidebar-footer">
+    <a href="/auth/logout" class="logout-link">Logout</a>
+  </div>
+  <% } %>
+</aside>

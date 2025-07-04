@@ -1,0 +1,43 @@
+<!-- views/error.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/global.css">
+    <style>
+        .error-container {
+            text-align: center;
+            padding: 50px;
+            margin-top: 50px;
+            background-color: var(--card-background);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .error-container h1 {
+            color: var(--danger-color);
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .error-container p {
+            font-size: 1.2em;
+            color: var(--light-text-color);
+            margin-bottom: 30px;
+        }
+        .error-container a {
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1><%= title %></h1>
+        <p><%= message %></p>
+        <a href="/" class="btn btn-primary">Go to Homepage</a>
+    </div>
+</body>
+</html>

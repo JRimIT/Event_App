@@ -1,0 +1,55 @@
+<!-- views/registerEvent.ejs - Student Event Registration Interface -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/global.css" />
+    <link rel="stylesheet" href="/navbar.css" />
+    <link rel="stylesheet" href="/registerEvent.css" />
+  </head>
+  <body>
+    <%- include('partials/navbar', { user: user }) %>
+
+    <div class="container">
+      <h2><%= title %></h2>
+      <%- include('partials/message') %> <% if (events.length > 0) { %>
+      <div class="event-list">
+        <% events.forEach(event => { %>
+        <div
+          class="event-card <%= event.isFull ? 'event-full' : '' %> <%= event.isRegisteredByCurrentUser ? 'event-registered' : '' %>"
+        >
+          <h3><%= event.name %></h3>
+          <p><strong>Description:</strong> <%= event.description %></p>
+          <p>
+            <strong>Date:</strong> <%= new Date(event.date).toLocaleDateString()
+            %>
+          </p>
+          <p><strong>Location:</strong> <%= event.location %></p>
+          <p>
+            <strong>Registrations:</strong> <%= event.registeredCount %> / <%=
+            event.capacity %>
+          </p>
+
+          <% if (event.isFull) { %>
+          <button class="btn btn-disabled" disabled>Full</button>
+          <% } else if (event.isRegisteredByCurrentUser) { %>
+          <button class="btn btn-info" disabled>Registered</button>
+          <% } else { %>
+          <form action="/events/register/<%= event._id %>" method="POST">
+            <button type="submit" class="btn btn-primary">Register</button>
+          </form>
+          <% } %>
+        </div>
+        <% }) %>
+      </div>
+      <% } else { %>
+      <p class="no-events-message">
+        No events currently available for registration.
+      </p>
+      <% } %>
+    </div>
+  </body>
+</html>

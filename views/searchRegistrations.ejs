@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/global.css" />
+    <link rel="stylesheet" href="/navbar.css" />
+    <link rel="stylesheet" href="/searchRegistrations.css" />
+  </head>
+  <body>
+    <%- include('partials/navbar', { user: user }) %>
+
+    <div class="container">
+      <h2><%= title %></h2>
+      <%- include('partials/message') %>
+
+      <!-- Search Box -->
+      <div class="search-card">
+        <form action="/registrations/search" method="POST" class="search-form">
+          <div class="form-group">
+            <label for="startDate">Start Date:</label>
+            <input
+              type="date"
+              id="startDate"
+              name="startDate"
+              value="<%= startDate %>"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="endDate">End Date:</label>
+            <input
+              type="date"
+              id="endDate"
+              name="endDate"
+              value="<%= endDate %>"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+      </div>
+
+      <% if (registrations.length > 0) { %>
+      <h3>Search Results (<%= registrations.length %>)</h3>
+      <div class="horizontal-scroll">
+        <% registrations.forEach(reg => { %>
+        <div class="result-card">
+          <p><strong>ID:</strong> <%= reg._id %></p>
+          <p>
+            <strong>Student:</strong> <%= reg.studentId ? reg.studentId.username
+            : 'N/A' %>
+          </p>
+          <p>
+            <strong>Event:</strong> <%= reg.eventId ? reg.eventId.name : 'N/A'
+            %>
+          </p>
+          <p>
+            <strong>Event Date:</strong> <%= reg.eventId ? new
+            Date(reg.eventId.date).toLocaleDateString() : 'N/A' %>
+          </p>
+          <p>
+            <strong>Registered On:</strong> <%= new
+            Date(reg.registrationDate).toLocaleString() %>
+          </p>
+        </div>
+        <% }) %>
+      </div>
+      <% } else if (startDate && endDate) { %>
+      <p class="no-results-message">
+        No registrations found for the specified date range.
+      </p>
+      <% } %>
+    </div>
+  </body>
+</html>

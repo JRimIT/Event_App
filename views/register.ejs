@@ -1,0 +1,41 @@
+<!-- views/register.ejs - User registration interface (for initial setup) -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/global.css">
+    <link rel="stylesheet" href="/login.css"> <!-- Reusing login.css for similar styling -->
+</head>
+<body>
+    <div class="login-container">
+        <h2><%= title %></h2>
+        <!-- Include message partial for error/success messages -->
+        <%- include('partials/message') %>
+        <form action="/auth/register" method="POST" class="login-form">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="role">Role:</label>
+                <select id="role" name="role" required>
+                    <option value="student">Student</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+        <div class="register-link">
+            Already have an account? <a href="/auth/login">Login here</a>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/global.css" />
+    <link rel="stylesheet" href="/navbar.css" />
+    <link rel="stylesheet" href="/cancelRegistration.css" />
+  </head>
+  <body style="background-color: white">
+    <%- include('partials/navbar', { user: user }) %>
+
+    <div class="container">
+      <h2><%= title %></h2>
+      <%- include('partials/message') %> <% if (registrations.length > 0) { %>
+      <div class="scroll-wrapper">
+        <div class="registration-card-list">
+          <% registrations.forEach(reg => { %>
+          <div class="registration-card">
+            <p><strong>Reg ID:</strong> <%= reg._id %></p>
+            <p>
+              <strong>Event:</strong> <%= reg.eventId ? reg.eventId.name : 'N/A'
+              %>
+            </p>
+            <p>
+              <strong>Date:</strong>
+              <%= reg.eventId ? new Date(reg.eventId.date).toLocaleDateString()
+              : 'N/A' %>
+            </p>
+            <p>
+              <strong>Registered:</strong>
+              <%= new Date(reg.registrationDate).toLocaleString() %>
+            </p>
+            <form
+              action="/registrations/cancel/<%= reg._id %>"
+              method="POST"
+              onsubmit="return confirmCancellation();"
+            >
+              <button type="submit" class="btn btn-danger">
+                Cancel Registration
+              </button>
+            </form>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+      <% } else { %>
+      <p class="no-registrations-message">
+        You have not registered for any events yet.
+      </p>
+      <% } %>
+    </div>
+
+    <script>
+      function confirmCancellation() {
+        return confirm("Are you sure you want to cancel this registration?");
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+<!-- views/partials/message.ejs - For displaying success/error messages -->
+
+<% if (message && message.length > 0) { %>
+    <div class="alert alert-success">
+        <%= message %>
+    </div>
+<% } %>
+
+<% if (error && error.length > 0) { %>
+    <div class="alert alert-danger">
+        <%= error %>
+    </div>
+<% } %>
+

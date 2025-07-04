@@ -1,0 +1,77 @@
+:root {
+  --primary-color: #3498db;
+  --accent-color: #2980b9;
+  --border-color: #a9d4f2;
+  --danger-color: #e74c3c;
+}
+
+.scroll-wrapper {
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 20px;
+}
+
+.registration-card-list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: nowrap;
+}
+
+.registration-card {
+  min-width: 300px;
+  max-width: 320px;
+  background-color: #ffffff;
+  padding: 16px;
+  border-radius: 12px;
+  border: 2px solid var(--border-color);
+  box-shadow: 0 2px 8px rgba(52, 152, 219, 0.1);
+  display: inline-block;
+  vertical-align: top;
+  white-space: normal;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.registration-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.15);
+}
+
+.registration-card p {
+  margin: 8px 0;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.registration-card form {
+  margin-top: 12px;
+}
+
+.btn.btn-danger {
+  background-color: var(--danger-color);
+  color: white;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn.btn-danger:hover {
+  background-color: #c0392b;
+  transform: scale(1.02);
+}
+
+.no-registrations-message {
+  font-style: italic;
+  color: #777;
+  margin-top: 30px;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .registration-card {
+    min-width: 260px;
+  }
+}
