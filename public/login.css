@@ -20,7 +20,7 @@ body::before {
   left: 0;
   height: 100%;
   width: 100%;
-  background-image: url("/images/24.jpg"); /* ✅ Đường dẫn tới ảnh nền */
+  background-image: url("/images/24.png"); /* ✅ Đường dẫn tới ảnh nền */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
