@@ -10,6 +10,8 @@
   width: 100%;
   margin: 0 auto;
   padding: 20px;
+  padding-left: 270px; /* Đẩy nội dung sang phải, nếu navbar rộng 250px */
+  box-sizing: border-box;
 }
 
 .registration-card-list {
